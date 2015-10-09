@@ -20,7 +20,7 @@ public class PhoneSensorController {
         sensorManager = (SensorManager)appContext.getSystemService(Context.SENSOR_SERVICE);
     }
 
-    void waitUntil(Sensor sensor, final SensorCriteriaListener listener, int rate) throws InterruptedException {
+    public void waitUntil(Sensor sensor, final SensorCriteriaListener listener, int rate) throws InterruptedException {
         final SensorEventListener eventListener = new SensorEventListener() {
             @Override
             public void onSensorChanged(SensorEvent event) {
@@ -40,15 +40,21 @@ public class PhoneSensorController {
         };
         sensorEventListeners.add(eventListener);
         sensorManager.registerListener(eventListener, sensor, rate);
-        synchronized (eventListener){
-            eventListener.wait();
-        }
+        eventListener.wait();
     }
 
-    void stop(){
+    public void waitUntil(int sensorType, SensorCriteriaListener listener, int rate) throws InterruptedException {
+        waitUntil(sensorManager.getDefaultSensor(sensorType), listener, rate);
+    }
+
+    public void stop(){
         for(SensorEventListener listener : sensorEventListeners){
             listener.notify();
         }
+    }
+
+    SensorManager getSensorManager(){
+        return sensorManager;
     }
 
 }

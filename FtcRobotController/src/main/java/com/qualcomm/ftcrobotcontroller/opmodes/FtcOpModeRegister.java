@@ -32,6 +32,7 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE. */
 package com.qualcomm.ftcrobotcontroller.opmodes;
 
 import com.clwillingham.ftc.example.opmodes.AutoOpMode;
+import com.clwillingham.ftc.example.opmodes.SensorOpMode;
 import com.clwillingham.ftc.example.opmodes.TeleOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeManager;
 import com.qualcomm.robotcore.eventloop.opmode.OpModeRegister;
@@ -60,5 +61,6 @@ public class FtcOpModeRegister implements OpModeRegister {
     manager.register("NullOp", NullOp.class);
     manager.register("Teleop", TeleOpMode.class);
     manager.register("Autonomous", AutoOpMode.class);
+    manager.register("SensorTelemetry", SensorOpMode.class);
   }
 }
